@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+
+    <script src="jquery.min.js"></script>
+
+    <script src="handlebars.js"></script>
+
+    <link rel="localizations" type="application/l10n+json" href="locales.json">
+    <script type="text/javascript" src="html10n.js"></script>
+
+  </head>
+  <body>
+
+<div id="content-placeholder"></div>
+
+<script id="my_template" type="x-handlebars-template">
+  <div>{{myVar}} flicks poop at {{yourVar}}</div>
+</script>
+<script>
+(function(document) {
+  var language = document.cookie.match(/language=((\w{2,3})(-\w+)?)/);
+  if(language) language = language[1];
+  html10n.bind('indexed', function() {
+    html10n.localize([language, navigator.language, navigator.userLanguage, 'en'])
+  })
+  html10n.bind('localized', function() {
+    document.documentElement.lang = html10n.getLanguage()
+    document.documentElement.dir = html10n.getDirection()
+
+    var source = $('#my_template').html();
+    var template = Handlebars.compile(source);
+    var data = {};
+    data.myVar = html10n.get('myVar');
+    data.yourVar = html10n.get('yourVar');
+    console.log("data", data);
+    $("#content-placeholder").html(template(data));
+  });
+})(document)
+</script>
+
+  </body>
+</html>
