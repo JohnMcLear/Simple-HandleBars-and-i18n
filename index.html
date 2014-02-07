@@ -13,12 +13,36 @@
   </head>
   <body>
 
-<div id="content-placeholder"></div>
+<div id="container"></div>
+
+<script id="index" type="x-handlebars-template">
+  <div class="mainContents">
+    <div id="landing" class="landing">
+      <header id="header">
+        <div id="logo"><img src="img/nfcring-logo.png"></div>
+      </header>
+      <div class="count"></div>
+      <h2>{{10n 'whatDoYouWantToDoToday'}}</h2>
+      <ul class="link-list">
+        <li><a href="createAction.html" id="createNew" class="icon icon-plus">Create<span> Write a new action to your ring</span></a></li>
+        <!-- <li><button type="button" id="scan" class="icon icon-facebook">Scan QR Code from my computer</button></li> -->
+        <li><a href="readAction.html" id="read" class="icon icon-eye">Read<span> See what's on your ring</span></a></li>
+        <li><a href="mailto:support@nfcring.com" id="read" class="icon icon-envelop">Feedback<span> Love something or want to change something? Let us know</span></a></li>
+      </ul>
+    </div>
+  </div>
+</script>
 
 <script id="my_template" type="x-handlebars-template">
-  <div>{{myVar}} flicks poop at {{yourVar}}</div>
+  <div>{{10n 'myVar'}} flicks poop at {{10n 'yourVar'}}</div>
 </script>
 <script>
+Handlebars.registerHelper('10n',
+  function(str){
+    return (html10n != undefined ? html10n.get(str) : str);
+  }
+);
+
 (function(document) {
   var language = document.cookie.match(/language=((\w{2,3})(-\w+)?)/);
   if(language) language = language[1];
@@ -30,13 +54,9 @@
     document.documentElement.lang = html10n.getLanguage()
     document.documentElement.dir = html10n.getDirection()
 
-    var source = $('#my_template').html();
+    var source = $('#index').html();
     var template = Handlebars.compile(source);
-    var data = {};
-    data.myVar = html10n.get('myVar');
-    data.yourVar = html10n.get('yourVar');
-    console.log("data", data);
-    $("#content-placeholder").html(template(data));
+    $("#container").html(template());
   });
 })(document)
 </script>
