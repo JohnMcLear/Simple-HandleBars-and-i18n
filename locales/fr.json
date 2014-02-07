@@ -1,2 +1,8 @@
-{"fr":{"myVar":"a frog", "yourVar":"a surrender flag"}}
+{
+  "fr":{
+    "myVar":"a frog",
+    "yourVar":"a surrender flag",
+    "index.whatDoYouWantToDoToday":"What do you want to do todaAYYY??"
+  }
+}
 
