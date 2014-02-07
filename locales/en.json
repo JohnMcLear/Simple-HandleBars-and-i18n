@@ -1,1 +1,10 @@
-{"en":{"myVar":"foo", "yourVar":"bar", "whatDoYouWantToDoToday":"What do you want to do today?"}}
+{
+  "en":{
+    "myVar":"foo", 
+    "yourVar":"bar", 
+    "index":{
+      "whatDoYouWantToDoToday":"What do you want to do today?"
+    },
+    "index.whatDoYouWantToDoToday":"FOO"
+  }
+}

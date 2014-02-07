@@ -22,7 +22,7 @@
         <div id="logo"><img src="img/nfcring-logo.png"></div>
       </header>
       <div class="count"></div>
-      <h2>{{10n 'whatDoYouWantToDoToday'}}</h2>
+      <h2>{{html10n 'index.whatDoYouWantToDoToday'}}</h2>
       <ul class="link-list">
         <li><a href="createAction.html" id="createNew" class="icon icon-plus">Create<span> Write a new action to your ring</span></a></li>
         <!-- <li><button type="button" id="scan" class="icon icon-facebook">Scan QR Code from my computer</button></li> -->
@@ -37,7 +37,7 @@
   <div>{{10n 'myVar'}} flicks poop at {{10n 'yourVar'}}</div>
 </script>
 <script>
-Handlebars.registerHelper('10n',
+Handlebars.registerHelper('html10n',
   function(str){
     return (html10n != undefined ? html10n.get(str) : str);
   }
